@@ -17,7 +17,7 @@ public class AéreportController{
   @Autowired 
   private AéroportRepo ap;
 
-  @PostMapping(path="/add") 
+  @PostMapping(path="/ajouter") 
   public @ResponseBody String addNewUser (@RequestParam String nom_aeroport , 
       @RequestParam String Aeroport_ville , @RequestParam String Aeroport_pays) {
     
