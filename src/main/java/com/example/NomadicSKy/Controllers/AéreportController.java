@@ -31,7 +31,7 @@ public class AéreportController{
 
   @GetMapping(path="/all")
   public @ResponseBody Iterable<Aéroport> getAllUsers() {
-    // This returns a JSON or XML with the users
+    
     return ap.findAll();
   }
 }

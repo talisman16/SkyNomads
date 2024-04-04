@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
@@ -18,6 +19,7 @@ public class Aéroport {
   @Column( name = "nom_Aeroport" , unique = true , nullable= false) 
   private String nom_Aeroport;
  
+
   private String Aeroport_ville;
 
   private String Aeroport_pays;
