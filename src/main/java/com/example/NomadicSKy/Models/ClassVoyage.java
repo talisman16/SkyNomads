@@ -1,16 +1,16 @@
 package com.example.NomadicSKy.Models;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "ClasseVoyage")
-public class ClasseVoyage {
+@Table(name = "ClassVoyage")
+public class ClassVoyage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,14 +22,6 @@ public class ClasseVoyage {
 
     @Column(name = "Class_voyage_Capacite")
     private int classVoyageCapacite;
-
-    // Constructeurs, getters et setters
-    public ClasseVoyage() {}
-
-    public ClasseVoyage(String classVoyageNom, int classVoyageCapacite) {
-        this.classVoyageNom = classVoyageNom;
-        this.classVoyageCapacite = classVoyageCapacite;
-    }
 
     public int getClassVoyageId() {
         return classVoyageId;

@@ -2,12 +2,13 @@ package com.example.NomadicSKy.Models;
 
 
 import java.util.Date;
-
+import java.time.LocalDateTime;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -25,20 +26,15 @@ public class Reservation {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "Seat_id")
-    private Seat seat;
+    @JoinColumn(name = "Siege_id")
+    private DetailSiege DetailSiege;
 
     @Column(name = "Date_dereser")
-    private String dateDereser;
+    private LocalDateTime dateDeReservation;
     //
-    // Constructeurs, getters et setters
-    public Reservation() {}
-
-    public Reservation(User user, Seat seat, String dateDereser) {
-        this.user = user;
-        this.seat = seat;
-        this.dateDereser = dateDereser;
-    }
+    // getters et setters
+  
+  
 
     public int getReservationId() {
         return reservationId;
@@ -56,19 +52,19 @@ public class Reservation {
         this.user = user;
     }
 
-    public Seat getSeat() {
-        return seat;
+    public DetailSiege getSiege() {
+        return this.DetailSiege;
     }
 
-    public void setSeat(Seat seat) {
-        this.seat = seat;
+    public void setSiege(DetailSiege detailSiege) {
+        this.DetailSiege = detailSiege;
     }
 
-    public String getDateDereser() {
-        return dateDereser;
+    public LocalDateTime getDateDereser() {
+        return this.dateDeReservation;
     }
 
-    public void setDateDereser(String dateDereser) {
-        this.dateDereser = dateDereser;
+    public void setDateDereser(LocalDateTime dateDeReservation) {
+        this.dateDeReservation = dateDeReservation;
     }
 }
