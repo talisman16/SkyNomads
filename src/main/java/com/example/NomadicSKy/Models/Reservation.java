@@ -1,7 +1,6 @@
 package com.example.NomadicSKy.Models;
 
 
-import java.util.Date;
 import java.time.LocalDateTime;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
