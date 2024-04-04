@@ -8,6 +8,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
+
+// table aeropoty
 @Entity 
 @Table(name = "Aeroport" , uniqueConstraints = {@UniqueConstraint(columnNames = "nom_Aeroport" )})
 public class Aéroport {
