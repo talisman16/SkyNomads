@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.NomadicSKy.Models.Aéroport;
 import com.example.NomadicSKy.Repository.AéroportRepo;
 
-@Controller // This means that this class is a Controller
-@RequestMapping(path="/api") // This means URL's start with /demo (after Application path)
+@Controller
+@RequestMapping(path="/api") 
 public class AéreportController{
   @Autowired 
   private AéroportRepo ap;
