@@ -25,7 +25,7 @@ public class Reservation {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "Siege_id")
+    @JoinColumn(name ="siege_detail_id")
     private DetailSiege DetailSiege;
 
     @Column(name = "Date_dereser")

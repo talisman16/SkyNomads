@@ -14,7 +14,7 @@ public class ClassVoyage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Class_voyage_Id")
+    @Column(name = "class_voyage_id")
     private int classVoyageId;
 
     @Column(name = "Class_voyage_Nom")

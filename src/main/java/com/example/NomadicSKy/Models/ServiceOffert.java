@@ -13,7 +13,7 @@ public class ServiceOffert {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "ID_Classe_Voyage", referencedColumnName = "ID_Classe_Voyage")
+    @JoinColumn(name = "class_voyage_id", referencedColumnName = "class_voyage_id")
     private ClassVoyage classeVoyage;
 
     @Id
