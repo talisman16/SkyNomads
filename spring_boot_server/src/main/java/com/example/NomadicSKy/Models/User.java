@@ -22,7 +22,7 @@ public class User {
     private String user_nom; 
 
     @Column(name="user_email" , unique =  true , nullable = false)
-    private String user_email;
+    private String useremail;
 
     
     @Column(name ="user_PhoneNumber" , unique =  true , nullable =  false)
@@ -57,7 +57,7 @@ public class User {
 
     // Setter for user_email
     public void setUser_email(String email) {
-        this.user_email = email;
+        this.useremail = email;
     }
 
     // Setter for user_PhoneNumber
@@ -105,7 +105,7 @@ public class User {
 
     // Getter for user_email
     public String getUser_email() {
-        return user_email;
+        return useremail;
     }
 
     // Getter for user_PhoneNumber
