@@ -4,6 +4,8 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import LoginForm from './components/Login/Login';
 import Register from './components/Register';
+import AboutUs from './components/AboutUs';
+import LandingPage from './components/LandingPage';
 import './App.css'
 
 const App = () => {
@@ -13,8 +15,10 @@ const App = () => {
         <Navbar />
         <div className="flex-1 p-4">
           <Routes>
+          <Route exact path="/" element={<LandingPage />} />
             <Route exact path="/login" element={<LoginForm />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/about" element={<AboutUs />} />
           </Routes>
         </div>
         <Footer />
