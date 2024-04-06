@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './Login.css';
+import axios from 'axios';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (!email || !password) {
@@ -21,13 +22,26 @@ const LoginForm = () => {
       return;
     }
 
-    if (password.length < 8) {
-      toast.error('Please enter a password with at least 8 characters');
-      return;
-    }
+    
 
-    // proceed with login
+    try {
+      const response = await axios.post('http://localhost:8080/users/login', {
+        user_email: email,
+        user_password: password
+      });
+
+      if (response.status === 200) {
+        toast.success('Login successful');
+        // Redirect to dashboard or any other page upon successful login
+        // Example: history.push('/dashboard');
+      } else {
+        toast.error('Login failed');
+      }
+    } catch (error) {
+      toast.error('Login failed');
+    }
   };
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">

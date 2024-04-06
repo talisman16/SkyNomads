@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [countries, setCountries] = useState([]);
@@ -12,7 +13,8 @@ const Register = () => {
   const [prenom, setPrenom] = useState('');
   const [selectedCountry, setSelectedCountry] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
-
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch('https://restcountries.com/v3.1/all?fields=name')
@@ -24,9 +26,9 @@ const Register = () => {
     setSelectedCountry(event.target.value);
   };
 
-  const handleRegister = (event) => {
+  const handleRegister = async (event) => {
     event.preventDefault();
-    if (!email || !password || !nom || !prenom || !selectedCountry) {
+    if (!email || !password || !nom || !prenom || !selectedCountry || !selectedCity || !phoneNumber) {
       toast.error('Please fill in all fields');
       return;
     }
@@ -46,7 +48,31 @@ const Register = () => {
       return;
     }
 
-    // Rest of the function
+    try {
+      const response = await axios.post('http://localhost:8080/users', {
+        user_email: email,
+        user_password: password,
+        user_nom: nom,
+        user_prenom: prenom,
+        user_pays: selectedCountry,
+        user_ville: selectedCity,
+        user_PhoneNumber: phoneNumber // Changed to match the backend field name
+      });
+
+      // Check if the registration was successful
+      if (response.status === 201) {
+        toast.success('Registration successful');
+        // Optionally, redirect the user to another page
+        setTimeout(() => {
+          navigate('/login');
+        }, 2000);
+      } else {
+        toast.error('Registration failed');
+        
+      }
+    } catch (error) {
+      toast.error('Registration failed');
+    }
   };
 
   return (
@@ -84,7 +110,7 @@ const Register = () => {
               onChange={(event) => setPrenom(event.target.value)}
             />
           </div>
-          <div className="mb-4 col-span-2">
+          <div className="mb-4">
             <label htmlFor="adresse" className="block text-green-600 font-bold mb-1">
               Adresse
             </label>
@@ -97,31 +123,45 @@ const Register = () => {
             />
           </div>
           <div className="mb-4">
-  <label htmlFor="pays" className="block text-green-600 font-bold mb-1">
-    Pays
-  </label>
-  <select
-    id="pays"
-    name="pays"
-    className="block w-full py-2 px-3 text-gray-700 leading-tight border-gray-300 bg-white rounded-lg focus:outline-none focus:shadow-outline"
-    onChange={handleCountryChange}
-  >
-    <option value="">Select a country</option>
-    {countries.map((country) => (
-      <option key={country.name.common} value={country.name.common}>
-        {country.name.common}
-      </option>
-    ))}
-  </select>
-</div>
+            <label htmlFor="phoneNumber" className="block text-green-600 font-bold mb-1">
+              Phone Number
+            </label>
+            <input
+              type="text"
+              id="phoneNumber"
+              name="phoneNumber"
+              value={phoneNumber}
+              className="appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder="Enter your phone number"
+              onChange={(event) => setPhoneNumber(event.target.value)}
+            />
+          </div>
           <div className="mb-4">
-            <label htmlFor="city" className="block text-green-600 font-bold mb-1">
+            <label htmlFor="pays" className="block text-green-600 font-bold mb-1">
+              Pays
+            </label>
+            <select
+              id="pays"
+              name="pays"
+              className="block w-full py-2 px-3 text-gray-700 leading-tight border-gray-300 bg-white rounded-lg focus:outline-none focus:shadow-outline"
+              onChange={handleCountryChange}
+            >
+              <option value="">Select a country</option>
+              {countries.map((country) => (
+                <option key={country.name.common} value={country.name.common}>
+                  {country.name.common}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="mb-4">
+            <label htmlFor="ville" className="block text-green-600 font-bold mb-1">
               Ville
             </label>
             <input
               type="text"
-              id="city"
-              name="city"
+              id="ville"
+              name="ville"
               value={selectedCity}
               className="appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               placeholder="Enter your city"
@@ -137,7 +177,7 @@ const Register = () => {
               id="email"
               name="email"
               value={email}
-              className="appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline"
               placeholder="Enter your email"
               onChange={(event) => setEmail(event.target.value)}
             />
