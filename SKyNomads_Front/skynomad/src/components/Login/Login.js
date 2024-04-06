@@ -4,12 +4,16 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './Login.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import useUserData from '../DATA/UserData';
 
-const LoginForm = () => {
+const LoginForm = ({ setUserData }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
 
     if (!email || !password) {
@@ -22,26 +26,31 @@ const LoginForm = () => {
       return;
     }
 
-    
-
     try {
       const response = await axios.post('http://localhost:8080/users/login', {
         user_email: email,
         user_password: password
       });
-
+    
       if (response.status === 200) {
-        toast.success('Login successful');
-        // Redirect to dashboard or any other page upon successful login
-        // Example: history.push('/dashboard');
+        navigate('/dashboard');
+        window.location.reload();
+        console.log(response.data)
+
+        localStorage.setItem('userData', JSON.stringify(response.data));
+        setUserData(response.data);
+
+        
+        
+    
+        
       } else {
-        toast.error('Login failed');
+        toast.error('An error occurred during login. Please try again.');
       }
     } catch (error) {
-      toast.error('Login failed');
+          toast.error("loggin later!")
     }
   };
-
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
@@ -49,7 +58,7 @@ const LoginForm = () => {
         <h2 className="text-3xl font-bold text-center mb-6 text-green-600">
           SkyNomads Flight Reservation
         </h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleLogin}>
           <div className="mb-4">
             <label htmlFor="email" className="block text-green-600 font-bold mb-1">
               Email
@@ -64,12 +73,12 @@ const LoginForm = () => {
               placeholder="Enter your email"
             />
           </div>
-          <div className="mb-6">
+          <div className="mb-6 relative">
             <label htmlFor="password" className="block text-green-600 font-bold mb-1">
               Password
             </label>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="password"
               name="password"
               value={password}
@@ -77,9 +86,18 @@ const LoginForm = () => {
               className="appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline"
               placeholder="Enter your password"
             />
-            <p className="text-gray-500 text-xs italic">
-              Password must be at least 8 characters long and contain a number, a special character, and a letter.
-            </p>
+            <div className="absolute right-0 top-0 mt-3 mr-2 cursor-pointer" onClick={() => setShowPassword(!showPassword)}>
+              {showPassword ? (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 text-gray-600">
+                  <path fillRule="evenodd" d="M10 12a2 2 0 100-4 2 2 0 000 4zM10 12a2 2 0 100-4 2 2 0 000 4z" />
+                </svg>
+              ) : (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 text-gray-600">
+                  <path fillRule="evenodd" d="M10 12c-2.206 0-4-1.794-4-4s1.794-4 4-4 4 1.794 4 4-1.794 4-4 4zm0-6a2 2 0 100 4 2 2 0 000-4z" clipRule="evenodd" />
+                  <path fillRule="evenodd" d="M10 14a6 6 0 100-12 6 6 0 000 12zm0-8a4 4 0 100 8 4 4 0 000-8z" clipRule="evenodd" />
+                </svg>
+              )}
+            </div>
           </div>
           <div className="flex items-center justify-between">
             <div className="form-check">
