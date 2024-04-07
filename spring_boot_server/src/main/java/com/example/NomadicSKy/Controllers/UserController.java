@@ -31,6 +31,8 @@ public class UserController {
         try {
             // Encrypt the password before saving
             user.setUser_password(passwordEncoder.encode(user.getUser_password()));
+            
+               
             User newUser = userService.addUser(user);
             return new ResponseEntity<>(newUser, HttpStatus.CREATED);
         } catch (Exception e) {

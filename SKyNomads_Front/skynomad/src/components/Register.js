@@ -55,9 +55,23 @@ const Register = () => {
         user_nom: nom,
         user_prenom: prenom,
         user_pays: selectedCountry,
-        user_ville: selectedCity,
-        user_PhoneNumber: phoneNumber // Changed to match the backend field name
+        user_Ville: selectedCity,
+        user_PhoneNumber: phoneNumber, // Changed to match the backend field name
+        user_Adresse : "Marrakech"
       });
+      /*
+      
+       "user_id": 303,
+        "user_prenom": "Ahmed",
+        "user_nom": "Yazali ",
+        "user_PhoneNumber": "062763781222",
+        "user_password": "$2a$10$qqfvUwfpAixIJjVXTLsxMu6sqeKkt6gAQ9yq7QkyHqPFtDFI3ruRa",
+        "user_Adresse": null,
+        "user_Ville": null,
+        "user_pays": "Vatican City",
+        "user_email": "ahmed@gmail.com"
+    },
+      */
 
       // Check if the registration was successful
       if (response.status === 201) {
