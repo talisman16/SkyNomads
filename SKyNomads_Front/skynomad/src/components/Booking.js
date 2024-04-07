@@ -15,6 +15,16 @@ const FlightReservations = () => {
       image: 'https://source.unsplash.com/random/800x600?airplane',
     },
     {
+        id: 1,
+        countryFrom: 'United States',
+        countryTo: 'Canada',
+        price: '$300',
+        time: '6h 30m',
+        passengerLimit: '100',
+        airlineName: 'Delta Airlines',
+        image: 'https://source.unsplash.com/random/800x600?airplane',
+      },
+    {
       id: 2,
       countryFrom: 'Canada',
       countryTo: 'United States',

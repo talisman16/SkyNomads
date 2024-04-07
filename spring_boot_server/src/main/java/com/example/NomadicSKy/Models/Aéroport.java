@@ -17,15 +17,23 @@ public class Aéroport {
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Integer Aeroport_id;
 
-  @Column( name = "nom_Aeroport" , unique = true , nullable= false) 
+  @Column(name = "nom_Aeroport", unique = true, nullable = false)
   private String nom_Aeroport;
- 
 
+  @Column(name = "Aeroport_ville")
   private String Aeroport_ville;
 
+  @Column(name = "Aeroport_pays")
   private String Aeroport_pays;
 
+  public Aéroport() {
+  }
 
+  public Aéroport(String nom_Aeroport, String Aeroport_ville, String Aeroport_pays) {
+      this.nom_Aeroport = nom_Aeroport;
+      this.Aeroport_ville = Aeroport_ville;
+      this.Aeroport_pays = Aeroport_pays;
+  }
   // Getters 
 
   // id de l'aeroport 

@@ -9,6 +9,7 @@ import LandingPage from './components/LandingPage';
 import Dashboard from './components/Dashboard';
 import useUserData from './components/DATA/UserData'; // Import the useUserData hook
 import FlightReservations from './components/Booking';
+import Aeroport from './components/Admins/Aeroport';
 import './App.css'
 import { ChakraProvider } from '@chakra-ui/react'
 
@@ -23,6 +24,7 @@ const App = () => {
         <div className="flex-1 p-4">
           <Routes>
             <Route exact path="/" element={<LandingPage />} />
+            <Route exact path="/admin" element={<Aeroport />} />
             <Route exact path="/login" element={<LoginForm setUserData={setUserData} />} />
             <Route path="/register" element={<Register />} />
             <Route path="/about" element={<AboutUs />} />
