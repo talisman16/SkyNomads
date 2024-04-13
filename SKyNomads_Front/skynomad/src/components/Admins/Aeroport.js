@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Box, Card, CardBody, Input, Button, FormControl, FormLabel, Heading, List, ListItem, Stack, Text, Flex, Spacer } from '@chakra-ui/react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import FlightDetails from './FlightDetails';
 
 
 const Aeroport = () => {
@@ -104,6 +105,9 @@ const Aeroport = () => {
         </Flex>
         <Button type="submit" colorScheme="green" size="md" width="100%" mb={4}>Add Airport</Button>
       </form>
+
+
+       <FlightDetails/>
 
       <Heading as="h2" size="lg" mb={4}>Airports</Heading>
         <Box display="grid" gridTemplateColumns="repeat(4, 1fr)" gap={4}>

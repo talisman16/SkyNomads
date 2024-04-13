@@ -21,9 +21,9 @@ const LandingPage = () => {
           <div className='py-7 mg-5'>
             {/* Conditional rendering based on userData */}
             {userData ? (
-              <Link to="/dashboard" className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-8">Book Now</Link>
+              <Link to="/book" className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-8">Book Now</Link>
             ) : (
-              <Link to="/register" className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-8">Join Us</Link>
+              <Link to="/login" className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-8">Join Us</Link>
             )}
           </div>
         </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Image, Heading, Text, Button, FormControl, Input, Stack, Select } from '@chakra-ui/react';
-
+import SearchFlight from './SearchFlight';
 const FlightReservations = () => {
   const flights = [
     {
@@ -49,43 +49,9 @@ const FlightReservations = () => {
   return (
     <Box className="container mx-auto px-4 py-8">
       <Heading className="text-4xl font-bold mb-8 text-green-700">Flight Reservations</Heading>
-      <Box className="mt-8">
-        <Heading className="text-2xl font-bold mb-4 text-green-700">Search Flights</Heading>
-        <FormControl>
-          <Stack spacing={4} direction={['column', 'row']}>
-            <Box flex={1}>
-              <Select placeholder="Departure" value={from} onChange={(e) => setFrom(e.target.value)}>
-                {countries.map((country) => (
-                  <option key={country} value={country}>
-                    {country}
-                  </option>
-                ))}
-              </Select>
-              <Input type="date" placeholder="Date from" value={dateFrom} onChange={(e) => setDateFrom(e.target.value)} />
-            </Box>
-            <Box flex={1}>
-              <Select placeholder="Arrival" value={to} onChange={(e) => setTo(e.target.value)}>
-                {countries.map((country) => (
-                  <option key={country} value={country}>
-                    {country}
-                  </option>
-                ))}
-              </Select>
-              <Input type="date" placeholder="Date to" value={dateTo} onChange={(e) => setDateTo(e.target.value)} />
-            </Box>
-            <Box>
-              <Input type="number" placeholder="Number of passengers" value={passengers} onChange={(e) => setPassengers(e.target.value)} />
-              <Select placeholder="One way" value={oneWay} onChange={(e) => setOneWay(e.target.value === 'true')}>
-                <option value="true">One way</option>
-                <option value="false">Round trip</option>
-              </Select>
-              <Button className="bg-green-700 text-white py-2 px-4 rounded-lg hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-opacity-50">
-                Search
-              </Button>
-            </Box>
-          </Stack>
-        </FormControl>
-      </Box>
+      <Box w="80%" mx="auto">
+          <SearchFlight />
+        </Box>
       <Box className="grid grid-cols-1 sm:grid-cols-2 gap-8">
         {flights.map((flight) => (
           <Box key={flight.id} className="bg-white rounded-lg shadow-lg p-4">

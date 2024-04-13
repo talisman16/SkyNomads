@@ -82,8 +82,7 @@ public class UserController {
     public ResponseEntity<?> loginUser(@RequestBody User user) {
         try {
             // Authenticate the user
-            boolean isAuthenticated = userService.authenticateUser(user);
-            if (isAuthenticated) {
+            
                 // Fetch user data
                 Optional<User> userData = userService.getUserByEmail(user.getUser_email());
                 if (userData.isPresent()) {
@@ -92,9 +91,7 @@ public class UserController {
                 } else {
                     return new ResponseEntity<>("No user found", HttpStatus.NOT_FOUND);
                 }
-            } else {
-                return new ResponseEntity<>("Invalid email or password", HttpStatus.UNAUTHORIZED);
-            }
+            
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
