@@ -29,6 +29,11 @@ const Navbar = ({ userData }) => {
             </Link>
             {userData ? (
               <>
+                {userData.user_email === 'admin@admin.com' && (
+                  <button onClick={() => navigate('/admin')} className="bg-yellow-500 text-white py-2 px-4 rounded-md font-semibold focus:outline-none focus:shadow-outline mr-3">
+                    Admin Panel
+                  </button>
+                )}
                 <Link to="/dashboard" className="bg-green-100 text-green-600 py-2 px-4 rounded-md font-semibold hover:bg-green-200 focus:outline-none focus:shadow-outline mr-3">
                   Profile
                 </Link>
