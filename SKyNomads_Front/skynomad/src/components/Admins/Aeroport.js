@@ -4,7 +4,7 @@ import { Box, Card, CardBody, Input, Button, FormControl, FormLabel, Heading, Li
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import FlightDetails from './FlightDetails';
-
+import VoyageClass from './VoyageClass';
 
 const Aeroport = () => {
   const [aeroports, setAeroports] = useState([]);
@@ -108,7 +108,7 @@ const Aeroport = () => {
 
 
        <FlightDetails/>
-
+<VoyageClass/>
       <Heading as="h2" size="lg" mb={4}>Airports</Heading>
         <Box display="grid" gridTemplateColumns="repeat(4, 1fr)" gap={4}>
         {aeroports.map((aeroport) => (
