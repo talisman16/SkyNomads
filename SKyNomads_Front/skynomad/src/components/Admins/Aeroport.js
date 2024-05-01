@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import FlightDetails from './FlightDetails';
 import VoyageClass from './VoyageClass';
+import SiegeDetails from './SiegeDetails';
 
 const Aeroport = () => {
   const [aeroports, setAeroports] = useState([]);
@@ -108,7 +109,16 @@ const Aeroport = () => {
 
 
        <FlightDetails/>
+       <div className='py-15'> 
+       <Heading as="h2" size="lg" mb={4}>Class Voyage </Heading>
+
 <VoyageClass/>
+</div>
+<Heading as="h2" size="lg" mt={8} mb={4}>Available Seats </Heading>
+
+<SiegeDetails/>
+
+ 
       <Heading as="h2" size="lg" mb={4}>Airports</Heading>
         <Box display="grid" gridTemplateColumns="repeat(4, 1fr)" gap={4}>
         {aeroports.map((aeroport) => (

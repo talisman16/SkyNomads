@@ -108,7 +108,7 @@ const FlightDetails = () => {
         {details.map((detail) => (
           <GridItem key={detail.vol_id}>
             <Box borderWidth="1px" borderRadius="md" p={4}>
-              <Text fontSize="lg" fontWeight="bold">{detail.sourceAeroport.nomAeroport} - {detail.sourceAeroport.aeroportVille}, {detail.sourceAeroport.paysAeroport}</Text>
+              <Text fontSize="lg" fontWeight="bold">{detail.vol_id} : {detail.sourceAeroport.nomAeroport} - {detail.sourceAeroport.aeroportVille}, {detail.sourceAeroport.paysAeroport}</Text>
               <Text><strong>Destination Airport:</strong> {detail.destinationAeroport.nomAeroport} - {detail.destinationAeroport.aeroportVille}, {detail.destinationAeroport.paysAeroport}</Text>
               <Text><strong>Departure Date:</strong> {new Date(detail.dateDeparture).toLocaleString()}</Text>
               <Text><strong>Arrival Date:</strong> {new Date(detail.dateArrival).toLocaleString()}</Text>
