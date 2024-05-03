@@ -1,7 +1,7 @@
 package com.example.NomadicSKy.Controllers;
 
 import com.example.NomadicSKy.Models.CoutDeVol;
-import com.example.NomadicSKy.Repositories.CoutDeVolRepository;
+import com.example.NomadicSKy.Repository.CoutdeVolRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ import java.util.Optional;
 public class CoutDeVolController {
 
     @Autowired
-    private CoutDeVolRepository coutDeVolRepository;
+    private CoutdeVolRepo coutDeVolRepository;
 
     // GET endpoint to retrieve all CoutDeVol entities
     @GetMapping

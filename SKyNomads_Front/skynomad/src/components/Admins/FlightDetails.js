@@ -122,26 +122,30 @@ const FlightDetails = () => {
     <Box borderWidth="1px" borderRadius="md" p={4} mt={4}>
       <form onSubmit={handleSubmit}>
         <Grid templateColumns="1fr 1fr" gap={4}>
+        
           <FormControl>
-            <FormLabel>Source Airport:</FormLabel>
-           <Select name="sourceAeroport" onChange={(e) => handleSourceAirportChange(e.target.value)}>
-              {airports.map(airport => (
-                <option key={airport.idAeroport} value={airport.idAeroport}>
-                  {airport.nomAeroport} - {airport.aeroportVille}, {airport.paysAeroport}
-                </option>
-              ))}
-            </Select>
-          </FormControl>
-          <FormControl>
-            <FormLabel>Destination Airport:</FormLabel>
-            <Select name="destinationAeroport" onChange={(e) => handleDestinationAirportChange(e.target.value)}>
-              {airports.map(airport => (
-                <option key={airport.idAeroport} value={airport.idAeroport}>
-                  {airport.nomAeroport} - {airport.aeroportVille}, {airport.paysAeroport}
-                </option>
-              ))}
-            </Select>
-          </FormControl>
+  <FormLabel>Source Airport:</FormLabel>
+  <Select name="sourceAeroport" onChange={(e) => handleSourceAirportChange(e.target.value)} required>
+    <option disabled selected value="">Select Source Airport </option>
+    {airports.map(airport => (
+      <option key={airport.idAeroport} value={airport.idAeroport}>
+        {airport.nomAeroport} - {airport.aeroportVille}, {airport.paysAeroport}
+      </option>
+    ))}
+  </Select>
+</FormControl>
+<FormControl>
+  <FormLabel>Destination Airport:</FormLabel>
+  <Select name="destinationAeroport" onChange={(e) => handleDestinationAirportChange(e.target.value)} required>
+    <option disabled selected value="">Select a Destination Airport </option>
+    {airports.map(airport => (
+      <option key={airport.idAeroport} value={airport.idAeroport}>
+        {airport.nomAeroport} - {airport.aeroportVille}, {airport.paysAeroport}
+      </option>
+    ))}
+  </Select>
+</FormControl>
+
         </Grid>
         <Grid templateColumns="1fr 1fr" gap={4} mt={4}>
           <FormControl>

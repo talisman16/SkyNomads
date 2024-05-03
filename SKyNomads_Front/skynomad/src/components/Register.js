@@ -54,9 +54,9 @@ const Register = () => {
         user_password: password,
         user_nom: nom,
         user_prenom: prenom,
-        user_pays: selectedCountry,
+        user_pays: "Morocoo",
         user_Ville: selectedCity,
-        user_PhoneNumber: phoneNumber, // Changed to match the backend field name
+        user_PhoneNumber: phoneNumber,  
         user_Adresse : "Marrakech"
       });
       /*
@@ -151,23 +151,19 @@ const Register = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="pays" className="block text-green-600 font-bold mb-1">
-              Pays
-            </label>
-            <select
-              id="pays"
-              name="pays"
-              className="block w-full py-2 px-3 text-gray-700 leading-tight border-gray-300 bg-white rounded-lg focus:outline-none focus:shadow-outline"
-              onChange={handleCountryChange}
-            >
-              <option value="">Select a country</option>
-              {countries.map((country) => (
-                <option key={country.name.common} value={country.name.common}>
-                  {country.name.common}
-                </option>
-              ))}
-            </select>
-          </div>
+  <label htmlFor="pays" className="block text-green-600 font-bold mb-1">
+    Pays
+  </label>
+  <input
+    type="text"
+    id="pays"
+    name="pays"
+    placeholder="Enter country name"
+    className="block w-full py-2 px-3 text-gray-700 leading-tight border-gray-300 bg-white rounded-lg focus:outline-none focus:shadow-outline"
+    onChange={handleCountryChange}
+  />
+</div>
+
           <div className="mb-4">
             <label htmlFor="ville" className="block text-green-600 font-bold mb-1">
               Ville

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Box, Flex, Text, Divider, Heading, Badge, Button, FormControl, FormLabel, Select } from '@chakra-ui/react';
+ 
+import { FormControl, FormLabel, Input, Select, Button, Flex  , Text , Badge ,Divider , Box , Heading} from '@chakra-ui/react';
+
 
 
 const SiegeDetails = () => {
@@ -9,7 +11,8 @@ const SiegeDetails = () => {
   const [vols, setVols] = useState([]);
   const [selectedClassVoyage, setSelectedClassVoyage] = useState('');
   const [selectedVol, setSelectedVol] = useState('');
-
+  const [prixSiege, setPrixSiege] = useState('');
+  
   useEffect(() => {
     // Fetch available class voyages
     axios.get('http://localhost:8080/api/class-voyages')
@@ -48,7 +51,8 @@ const SiegeDetails = () => {
         },
         detailsVol: {
           vol_id: selectedVol
-        }
+        },
+        prix : prixSiege
       });
       
       // Fetch updated siege details and update the state
@@ -58,6 +62,7 @@ const SiegeDetails = () => {
       // Clear the selected values after successful submission
       setSelectedClassVoyage('');
       setSelectedVol('');
+      setPrixSiege('')
     } catch (error) {
       console.error('Error submitting data: ', error);
     }
@@ -84,30 +89,34 @@ const SiegeDetails = () => {
   return (
     <Box bg="white" p={6} rounded="md" shadow="md" mt={4}>
       <Heading size="md" mb={4} color="green.600">Siege Details</Heading>
-
       <form onSubmit={handleSubmit}>
-        <Flex justify="space-between" align="center" mb={4}>
-          <FormControl>
-            <FormLabel>Select Class Voyage</FormLabel>
-            <Select value={selectedClassVoyage} onChange={(e) => setSelectedClassVoyage(e.target.value)} required>
-              <option value="">Select Class Voyage</option>
-              {classVoyages.map(classVoyage => (
-                <option key={classVoyage.classVoyageId} value={classVoyage.classVoyageId}>{classVoyage.classVoyageNom}</option>
-              ))}
-            </Select>
-          </FormControl>
-          <FormControl>
-            <FormLabel>Select Vol ID</FormLabel>
-            <Select value={selectedVol} onChange={(e) => setSelectedVol(e.target.value)} required>
-              <option value="">Select Vol ID</option>
-              {vols.map(vol => (
-                <option key={vol.vol_id} value={vol.vol_id}>{vol.vol_id}</option>
-              ))}
-            </Select>
-          </FormControl>
-          <Button type="submit" colorScheme="green">Submit</Button>
-        </Flex>
-      </form>
+  <Flex justify="space-between" align="center" mb={4}>
+    <FormControl>
+      <FormLabel>Select Class Voyage</FormLabel>
+      <Select value={selectedClassVoyage} onChange={(e) => setSelectedClassVoyage(e.target.value)} required>
+        <option value="">Select Class Voyage</option>
+        {classVoyages.map(classVoyage => (
+          <option key={classVoyage.classVoyageId} value={classVoyage.classVoyageId}>{classVoyage.classVoyageNom}</option>
+        ))}
+      </Select>
+    </FormControl>
+    <FormControl>
+      <FormLabel>Select Vol ID</FormLabel>
+      <Select value={selectedVol} onChange={(e) => setSelectedVol(e.target.value)} required>
+        <option value="">Select Vol ID</option>
+        {vols.map(vol => (
+          <option key={vol.vol_id} value={vol.vol_id}>{vol.vol_id}</option>
+        ))}
+      </Select>
+    </FormControl>
+    <FormControl>
+      <FormLabel>Price</FormLabel>
+      <Input type="number" value={prixSiege} onChange={(e) => setPrixSiege(e.target.value)} required />
+    </FormControl>
+    <Button type="submit" colorScheme="green">Submit</Button>
+  </Flex>
+</form>
+
       
       {siegeDetails.map(siegeDetail => (
         <Box key={siegeDetail.siegeDetailId} mb={4} p={4} bg="gray.100" rounded="md">
@@ -137,7 +146,12 @@ const SiegeDetails = () => {
             </Text>
             <Text fontSize="md" color="gray.600">
               Aircraft: {siegeDetail.detailsVol.typeAvion}
-            </Text>
+            </Text> 
+
+            <Text fontSize="md" color="gray.600">
+           Price: {siegeDetail.prix }
+          </Text>
+ 
           </Flex>
           <Button colorScheme="red" onClick={() => handleDelete(siegeDetail.siegeDetailId)}>Delete</Button>
         </Box>
