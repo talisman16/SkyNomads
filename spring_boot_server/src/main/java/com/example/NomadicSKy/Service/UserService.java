@@ -15,7 +15,7 @@ import java.util.Optional;
 @Service
 public class UserService {
 
-     @Autowired
+    @Autowired
     private HttpSession session;
 
     private final UserRepo userRepo;
@@ -34,8 +34,8 @@ public class UserService {
     }
     public Optional<User> getUserByEmail(String email) {
         return userRepo.findByuseremail(email);
-        }
-        
+    }
+
     // Get all users
     public List<User> getAllUsers() {
         return (List<User>) userRepo.findAll();
@@ -59,21 +59,21 @@ public class UserService {
         } else {
             return false;
         }
-        
+
     }
     public void logoutUser(String email) {
         // Perform any necessary logout actions here
         // For example, clearing session-related data
-        
+
         // Clear the user data from the session
         session.removeAttribute("userData");
-    
+
         // Clear the user email from the session
         session.removeAttribute("email");
-    
+
         // Clear the user data from any other storage mechanism
         // that you are using to store the user data.
     }
-    
+
 
 }

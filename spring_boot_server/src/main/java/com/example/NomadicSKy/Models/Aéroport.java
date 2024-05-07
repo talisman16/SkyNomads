@@ -10,11 +10,11 @@ import jakarta.persistence.UniqueConstraint;
 
 
 // table aeropoty
-@Entity 
+@Entity
 @Table(name = "Aeroport" , uniqueConstraints = {@UniqueConstraint(columnNames = "nom_Aeroport" )})
 public class Aéroport {
   @Id
-  @GeneratedValue(strategy=GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer Aeroport_id;
 
   @Column(name = "nom_Aeroport", unique = true, nullable = false)
@@ -30,54 +30,55 @@ public class Aéroport {
   }
 
   public Aéroport(String nom_Aeroport, String Aeroport_ville, String Aeroport_pays) {
-      this.nom_Aeroport = nom_Aeroport;
-      this.Aeroport_ville = Aeroport_ville;
-      this.Aeroport_pays = Aeroport_pays;
+    this.nom_Aeroport = nom_Aeroport;
+    this.Aeroport_ville = Aeroport_ville;
+    this.Aeroport_pays = Aeroport_pays;
   }
-  // Getters 
+  // Getters
 
-  // id de l'aeroport 
+  // id de l'aeroport
   public Integer getIdAeroport()
   {
     return this.Aeroport_id;
   }
-//  ville de l'aeroport 
+  //  ville de l'aeroport
   public String getAeroportVille()
   {
     return this.Aeroport_ville;
   }
-// pays de l'areoport 
+// pays de l'areoport
 
-public String getPaysAeroport()
-{
-  return this.Aeroport_pays;
-}
+  public String getPaysAeroport()
+  {
+    return this.Aeroport_pays;
+  }
   // nom de l'aeroport
-    public String getNomAeroport()
-    {
-      return this.nom_Aeroport; 
-    }
+  public String getNomAeroport()
+  {
+    return this.nom_Aeroport;
+  }
 
 
-// Setters 
+// Setters
 
-public void setIdAeroport(Integer id) {
-  this.Aeroport_id = id;
+  public void setIdAeroport(Integer id) {
+    this.Aeroport_id = id;
+  }
+
+  // Setter for nom_Aeroport
+  public void setNomAeroport(String nomAeroport) {
+    this.nom_Aeroport = nomAeroport;
+  }
+
+  // Setter for Aeroport_ville
+  public void setAeroportVille(String ville) {
+    this.Aeroport_ville = ville;
+  }
+
+  // Setter for Aeroport_pays
+  public void setPaysAeroport(String pays) {
+    this.Aeroport_pays = pays;
+  }
+
 }
 
-// Setter for nom_Aeroport
-public void setNomAeroport(String nomAeroport) {
-  this.nom_Aeroport = nomAeroport;
-}
-
-// Setter for Aeroport_ville
-public void setAeroportVille(String ville) {
-  this.Aeroport_ville = ville;
-}
-
-// Setter for Aeroport_pays
-public void setPaysAeroport(String pays) {
-  this.Aeroport_pays = pays;
-}
-
-}

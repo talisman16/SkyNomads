@@ -31,8 +31,8 @@ public class UserController {
         try {
             // Encrypt the password before saving
             user.setUser_password(passwordEncoder.encode(user.getUser_password()));
-            
-               
+
+
             User newUser = userService.addUser(user);
             return new ResponseEntity<>(newUser, HttpStatus.CREATED);
         } catch (Exception e) {
@@ -82,16 +82,16 @@ public class UserController {
     public ResponseEntity<?> loginUser(@RequestBody User user) {
         try {
             // Authenticate the user
-            
-                // Fetch user data
-                Optional<User> userData = userService.getUserByEmail(user.getUser_email());
-                if (userData.isPresent()) {
-                    // Return user data
-                    return new ResponseEntity<>(userData.get(), HttpStatus.OK);
-                } else {
-                    return new ResponseEntity<>("No user found", HttpStatus.NOT_FOUND);
-                }
-            
+
+            // Fetch user data
+            Optional<User> userData = userService.getUserByEmail(user.getUser_email());
+            if (userData.isPresent()) {
+                // Return user data
+                return new ResponseEntity<>(userData.get(), HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("No user found", HttpStatus.NOT_FOUND);
+            }
+
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -121,5 +121,5 @@ public class UserController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-  
+
 }

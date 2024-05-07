@@ -1,22 +1,21 @@
 package com.example.NomadicSKy.Models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Service_Offering")
 public class ServiceOffert {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    private int id;
+
     @ManyToOne
     @JoinColumn(name = "class_voyage_id", referencedColumnName = "class_voyage_id")
     private ClassVoyage classeVoyage;
 
-    @Id
+
     @ManyToOne
     @JoinColumn(name = "ID_Service")
     private ServiceVol serviceVol;

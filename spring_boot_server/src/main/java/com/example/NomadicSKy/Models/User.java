@@ -13,18 +13,18 @@ import jakarta.persistence.UniqueConstraint;
 @Table(name = "User" , uniqueConstraints = {@UniqueConstraint(columnNames = "user_email")})
 public class User {
 
-    @Id 
-    @GeneratedValue(strategy =GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy =GenerationType.IDENTITY)
     private Integer user_id;
 
-    private String user_prenom; 
+    private String user_prenom;
 
-    private String user_nom; 
+    private String user_nom;
 
     @Column(name="user_email" , unique =  true , nullable = false)
     private String useremail;
 
-    
+
     @Column(name ="user_PhoneNumber" , unique =  true , nullable =  false)
     private String user_PhoneNumber;
 
@@ -33,12 +33,12 @@ public class User {
 
     private String user_Adresse;
 
-    private String user_Ville; 
+    private String user_Ville;
 
 
     private String user_pays;
 
-       // Setters
+    // Setters
 
     // Setter for user_id
     public void setUser_id(Integer id) {
@@ -86,7 +86,7 @@ public class User {
     }
 
 
-      // Getters
+    // Getters
 
     // Getter for user_id
     public Integer getUser_id() {

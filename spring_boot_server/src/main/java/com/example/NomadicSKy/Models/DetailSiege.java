@@ -36,9 +36,9 @@ public class DetailSiege {
         return siegeDetailId;
     }
 
-    public void setPrix(Integer prix) 
+    public void setPrix(Integer prix)
     {
-        this.prix_siege =prix; 
+        this.prix_siege =prix;
     }
     public  Integer getPrix ()
     {
@@ -67,3 +67,4 @@ public class DetailSiege {
         this.detailsVol = detailsVol;
     }
 }
+
