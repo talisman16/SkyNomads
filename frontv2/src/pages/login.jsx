@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Box, Flex, Heading, Input, Button, Alert, AlertIcon, InputGroup, InputRightElement } from '@chakra-ui/react';
+import axios from 'axios';
+import { Box, Flex, Heading, Input, Button, Alert, AlertIcon } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
 
@@ -9,7 +10,7 @@ const PasswordInput = () => {
   const handleClick = () => setShowPassword(!showPassword);
 
   return (
-    <InputGroup size="md" mb={6}> {/* Add margin bottom to create separation */}
+    <InputGroup size="md" mb={6}>
       <Input
         pr="4.5rem"
         type={showPassword ? 'text' : 'password'}
@@ -31,13 +32,25 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [formError, setFormError] = useState(false);
+  const [loginSuccess, setLoginSuccess] = useState(false);
 
   const handleSignIn = () => {
     if (!email || !password) {
       setFormError(true);
     } else {
-      // Implement sign-in logic
-      setFormError(false);
+      axios.post('http://localhost:8080/users/login', {
+        user_email: email,
+        user_password: password
+      })
+      .then(response => {
+        // If login is successful, set loginSuccess to true
+        setLoginSuccess(true);
+        setFormError(false);
+      })
+      .catch(error => {
+        console.error('Login failed:', error);
+        setFormError(true);
+      });
     }
   };
 
@@ -85,7 +98,13 @@ const LoginPage = () => {
           {formError && (
             <Alert status="error" mb={6}>
               <AlertIcon />
-              Please fill in all fields.
+              Login failed. Please check your credentials.
+            </Alert>
+          )}
+          {loginSuccess && (
+            <Alert status="success" mb={6}>
+              <AlertIcon />
+              Successfully connected.
             </Alert>
           )}
           <Box width="100%" textAlign="center">
