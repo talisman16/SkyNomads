@@ -26,11 +26,23 @@ public class DetailSiege {
     @JoinColumn(name = "detail_vol_id")
     private DetailsVol detailsVol;
 
+
+    @Column(name="prix_siege")
+    private Integer prix_siege;
     // Constructors, getters, and setters
 
     // Getter and setter for siegeDetailId
     public Integer getSiegeDetailId() {
         return siegeDetailId;
+    }
+
+    public void setPrix(Integer prix) 
+    {
+        this.prix_siege =prix; 
+    }
+    public  Integer getPrix ()
+    {
+        return this.prix_siege;
     }
 
     public void setSiegeDetailId(Integer siegeDetailId) {
