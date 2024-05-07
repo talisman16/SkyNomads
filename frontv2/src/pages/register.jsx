@@ -166,30 +166,28 @@ const RegisterPage = () => {
                 ))}
               </Select>
               <Input
-  placeholder="City"
-  size="lg"
-  mb={6}
-  borderRadius={12}
-  isRequired
-  value={selectedCity}
-  onChange={(e) => setSelectedCity(e.target.value)}
-  borderColor={formError && !selectedCity ? 'red.500' : 'inherit'}
-  _focus={{ boxShadow: 'outline' }}
-/>
-
-           <PhoneInput
-              placeholder="Phone Number"
-              size="lg"
-              mb={6}
-              borderRadius={12}
-              isRequired
-              value={phoneNumber}
-              onChange={setPhoneNumber}
-              borderColor={formError && !phoneNumber ? 'red.500' : 'inherit'}
-              _focus={{ boxShadow: 'outline' }}
-              defaultCountry="US"
-            />
-
+                placeholder="City"
+                size="lg"
+                mb={6}
+                borderRadius={12}
+                isRequired
+                value={selectedCity}
+                onChange={(e) => setSelectedCity(e.target.value)}
+                borderColor={formError && !selectedCity ? 'red.500' : 'inherit'}
+                _focus={{ boxShadow: 'outline' }}
+              />
+              <PhoneInput
+                placeholder="Phone Number"
+                size="lg"
+                mb={6} // Add margin-bottom to create spacing
+                borderRadius={12}
+                isRequired
+                value={phoneNumber}
+                onChange={setPhoneNumber}
+                borderColor={formError && !phoneNumber ? 'red.500' : 'inherit'}
+                _focus={{ boxShadow: 'outline' }}
+                defaultCountry="US"
+              />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}

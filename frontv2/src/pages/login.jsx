@@ -9,7 +9,7 @@ const PasswordInput = () => {
   const handleClick = () => setShowPassword(!showPassword);
 
   return (
-    <InputGroup size="md">
+    <InputGroup size="md" mb={6}> {/* Add margin bottom to create separation */}
       <Input
         pr="4.5rem"
         type={showPassword ? 'text' : 'password'}
