@@ -16,6 +16,7 @@ const RegisterPage = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [formError, setFormError] = useState(false);
   const [countryOptions, setCountryOptions] = useState([]);
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
   useEffect(() => {
     // Fetch countries data
@@ -35,15 +36,44 @@ const RegisterPage = () => {
   }, []);
 
   const handleSignUp = () => {
-    if (!email || !password || !nom || !prenom || !selectedCountry || !selectedCity || !phoneNumber) {
+    // Regular expression for email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+    // Check if any required field is empty or email format is incorrect
+    if (!email || !password || !nom || !prenom || !selectedCountry || !selectedCity || !phoneNumber || !emailRegex.test(email)) {
       setFormError(true);
-    } else {
-      // Implement sign-up logic
-      setFormError(false);
-      // Redirect to another page, e.g., dashboard
+      return; // Exit early if there are errors
     }
+  
+    axios.post('http://localhost:8080/users', {
+      user_email: email,
+      user_password: password,
+      user_nom: nom,
+      user_prenom: prenom,
+      user_pays: selectedCountry,
+      user_Ville: selectedCity,
+      user_PhoneNumber: phoneNumber,
+      user_Adresse: selectedCity
+    })
+    .then(response => {
+      console.log("Registration response:", response.data);
+      setFormError(false);
+      setRegistrationSuccess(true);
+      // Reset the input fields
+      setEmail('');
+      setPassword('');
+      setNom('');
+      setPrenom('');
+      setSelectedCountry('');
+      setSelectedCity('');
+      setPhoneNumber('');
+    })
+    .catch(error => {
+      console.error('Registration failed:', error);
+      setFormError(true);
+    });
   };
-
+  
   return (
     <Flex
       minHeight="100vh"
@@ -89,6 +119,12 @@ const RegisterPage = () => {
             <Alert status="error" mb={6}>
               <AlertIcon />
               Please fill in all fields.
+            </Alert>
+          )}
+          {registrationSuccess && (
+            <Alert status="success" mb={6}>
+              <AlertIcon />
+              Registration successful! You can now log in.
             </Alert>
           )}
           <Box width="100%" textAlign="center">
@@ -144,7 +180,7 @@ const RegisterPage = () => {
                 borderRadius={12}
                 isRequired
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value)} // Update the password state with the entered value
                 borderColor={formError && !password ? 'red.500' : 'inherit'}
                 _focus={{ boxShadow: 'outline' }}
               />
@@ -195,6 +231,7 @@ const RegisterPage = () => {
               transition={{ duration: 0.5, delay: 0.3 }}
               mb={6} // Add margin-bottom to create spacing
             >
+              {/* Sign Up button */}
               <Button
                 colorScheme="teal"
                 size="lg"

@@ -54,10 +54,10 @@ const Register = () => {
         user_password: password,
         user_nom: nom,
         user_prenom: prenom,
-        user_pays: "Morocoo",
+        user_pays: selectedCountry,
         user_Ville: selectedCity,
         user_PhoneNumber: phoneNumber,  
-        user_Adresse : "Marrakech"
+        user_Adresse : selectedCity
       });
  
 
