@@ -5,13 +5,24 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: Maven@3
+- task: NodeTool@0
   inputs:
-    mavenPomFile: 'spring_boot_server/pom.xml'  # Adjust the path here
-    mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'clean package'
+    versionSpec: '14.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+    npm run build
+  displayName: 'Install and build React app'
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: 'skynomad'  # Adjust the path to your React app source folder
+    Contents: '**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
