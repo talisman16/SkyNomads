@@ -7,22 +7,11 @@ pool:
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '14.x'
+    versionSpec: '10.x'
   displayName: 'Install Node.js'
 
 - script: |
+    cd frontv2
     npm install
     npm run build
-  displayName: 'Install and build React app'
-
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: 'skynomad'  # Adjust the path to your React app source folder
-    Contents: '**'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+  displayName: 'npm install and build'
