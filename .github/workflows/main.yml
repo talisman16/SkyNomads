@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch: # Allow manual triggering of the workflow
 
 jobs:
   build:
@@ -16,7 +17,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: 'latest'  # Use the latest version of Node.js
+        node-version: '14'  # Specify the desired Node.js version
         
     - name: Install dependencies
       run: npm install
@@ -28,3 +29,10 @@ jobs:
       
     - name: Deploy to hosting environment
       # Add your deployment step here, such as deploying to Azure, AWS, or another hosting provider
+      # Example deployment command for Azure App Service:
+      run: |
+        az webapp deployment source config --name <app-name> --resource-group <resource-group-name> --branch main --repo-url https://github.com/<username>/<repository>.git
+      env:
+        AZURE_WEBAPP_NAME: ${{ secrets.AZURE_WEBAPP_NAME }}
+        AZURE_RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCE_GROUP }}
+        AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
