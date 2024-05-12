@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.ff010cb3.css",
-    "main.js": "/static/js/main.99232cb3.js",
-    "index.html": "/index.html",
-    "main.ff010cb3.css.map": "/static/css/main.ff010cb3.css.map",
-    "main.99232cb3.js.map": "/static/js/main.99232cb3.js.map"
+    "main.css": "/SkyNomads/static/css/main.ff010cb3.css",
+    "main.js": "/SkyNomads/static/js/main.99232cb3.js",
+    "index.html": "/SkyNomads/index.html",
+    "main.ff010cb3.css.map": "/SkyNomads/static/css/main.ff010cb3.css.map",
+    "main.99232cb3.js.map": "/SkyNomads/static/js/main.99232cb3.js.map"
   },
   "entrypoints": [
     "static/css/main.ff010cb3.css",
