@@ -6,7 +6,6 @@ on:
       - main
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
     
@@ -20,8 +19,8 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '21'
-         
-      
+        distribution: 'adopt'  # Add the distribution parameter with a value like 'adopt'
+
     - name: List contents of the directory
       run: ls -l
       working-directory: spring_boot_server
