@@ -2,4 +2,4 @@
 
 Project for EMSI school 
 
-devs : Namous Nassim , Makoudi Khalid , Yazali Ahmed 
+devs : Namous Nassim , Youssef Labrach , Yazali Ahmed 
