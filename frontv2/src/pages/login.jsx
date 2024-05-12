@@ -29,7 +29,7 @@ const PasswordInput = () => {
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [password] = useState('');
   const [formError, setFormError] = useState(false);
 
   const handleSignIn = () => {
