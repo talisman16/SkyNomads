@@ -19,6 +19,8 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '21'
+       
+        distribution: 'adopt' 
 
     - name: List contents of the directory
       run: ls -l
