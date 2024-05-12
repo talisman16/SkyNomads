@@ -7,6 +7,7 @@ on:
   workflow_dispatch: # Allow manual triggering of the workflow
 
 jobs:
+
   build:
     runs-on: ubuntu-latest
     
@@ -27,12 +28,8 @@ jobs:
       run: npm run build
       working-directory: frontv2   # Set working directory to frontv2
       
-    - name: Deploy to hosting environment
-      # Add your deployment step here, such as deploying to Azure, AWS, or another hosting provider
-      # Example deployment command for Azure App Service:
-      run: |
-        az webapp deployment source config --name <app-name> --resource-group <resource-group-name> --branch main --repo-url https://github.com/<username>/<repository>.git
-      env:
-        AZURE_WEBAPP_NAME: ${{ secrets.AZURE_WEBAPP_NAME }}
-        AZURE_RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCE_GROUP }}
-        AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./frontv2/build
